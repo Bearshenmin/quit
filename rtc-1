@@ -1,0 +1,67 @@
+/*
+ * Generated using BlocklyDuino:
+ *
+ * https://github.com/MediaTek-Labs/BlocklyDuino-for-LinkIt
+ *
+ * Date: Mon, 30 May 2022 10:22:36 GMT
+ */
+/*  部份程式由吉哥積木產生  */
+/*  https://sites.google.com/jes.mlc.edu.tw/ljj/linkit7697  */
+#include <LRTC.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd_i2c(0x27);
+
+String get_time_from_RTC() {
+  // get time from the RTC module
+  LRTC.get();
+
+  // format to time string
+  static char buffer[] = "YYYY-MM-DDTHH:MM:SS+08";
+  sprintf(buffer, "%04ld-%02ld-%02ldT%02ld:%02ld:%02ld+08",
+    LRTC.year(),
+    LRTC.month(),
+    LRTC.day(),
+    LRTC.hour(),
+    LRTC.minute(),
+    LRTC.second());
+
+  return String(buffer);
+}
+
+void setup()
+{
+  lcd_i2c.backlight();
+  lcd_i2c.clear();
+  for (int count = 0; count < 3; count++) {
+    lcd_i2c.clear();
+    lcd_i2c.setCursor(0,0);
+    lcd_i2c.print("Loading.");
+    delay(200);
+    lcd_i2c.setCursor(0,0);
+    lcd_i2c.print("Loading..");
+    delay(200);
+    lcd_i2c.setCursor(0,0);
+    lcd_i2c.print("Loading...");
+    delay(200);
+  }
+  lcd_i2c.clear();
+  LRTC.begin();
+  lcd_i2c.begin(16, 2);
+}
+
+
+void loop()
+{
+  lcd_i2c.setCursor(0,1);
+  lcd_i2c.print(get_time_from_RTC());
+  delay(1000);
+lcd_i2c.setCursor(0,0);
+  lcd_i2c.print("mom!");
+  delay(3000);
+  lcd_i2c.setCursor(0,0);
+  lcd_i2c.print("I LOVE YOU!!!");
+  delay(3000);
+  lcd_i2c.setCursor(0,0);
+  lcd_i2c.print("I SO LOVE YOU!");
+  delay(3000);
+}
