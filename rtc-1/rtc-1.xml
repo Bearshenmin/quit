@@ -1,0 +1,94 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="board_initializes_setup" id="/fd2#kZ=rY6;6BYW5EZ[" x="230" y="70">
+    <field name="BOARD_TYPE">Arduino</field>
+    <statement name="CONTENT">
+      <block type="lcd_i2c_setting" id="L!pBLDYLvm%GL8Z`~Wac">
+        <field name="LCD_DIM">1602</field>
+        <field name="PIN">PIN</field>
+        <field name="I2C_ADDRESS">0x27</field>
+        <next>
+          <block type="lcd_i2c_light" id="vBHKaRg}pe]r99rMiF=7">
+            <field name="BACKLIGHT_STATE">ON</field>
+            <next>
+              <block type="lcd_i2c_clear" id="(x#l%J$E]mt+e8/O9m)p">
+                <next>
+                  <block type="rtc_set_time_from_number" id="`{tj?c|pMU=2AY$|-#]4">
+                    <value name="YEAR">
+                      <block type="math_number" id="]T-)v+fFC#aYOzG]|wU/">
+                        <field name="NUM">2022</field>
+                      </block>
+                    </value>
+                    <value name="MONTH">
+                      <block type="math_number" id="f3`!!Ul_xO$=_u@nW=sc">
+                        <field name="NUM">5</field>
+                      </block>
+                    </value>
+                    <value name="DAY">
+                      <block type="math_number" id="6!]M3s@vF(8dzO/|pRIV">
+                        <field name="NUM">31</field>
+                      </block>
+                    </value>
+                    <value name="HOUR">
+                      <block type="math_number" id="#|SdT`8Dw8LEh,TJtx5]">
+                        <field name="NUM">8</field>
+                      </block>
+                    </value>
+                    <value name="MIN">
+                      <block type="math_number" id="i!w=uq!oU#}G-v`a~zGZ">
+                        <field name="NUM">50</field>
+                      </block>
+                    </value>
+                    <value name="SEC">
+                      <block type="math_number" id="D@~ZpSDnBFIL%7oJyJ]L">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="03/Lhp#K*zIM7W@(Q5EB">
+        <statement name="CONTENT">
+          <block type="lcd_i2c_set_cursor" id="cy{LelMcvaGKDMyse/cK">
+            <value name="COL">
+              <block type="math_number" id="#}`WU}pwrgK%*x+Il~tq">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="ROW">
+              <block type="math_number" id="r|QYuR,w1bh,d]Qf:mgX">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="lcd_i2c_put" id="nKQCQgv}5{PED4+Sg1?7">
+                <value name="VALUE">
+                  <block type="rtc_get_time_field" id="B#xeTI^K+UGk(4[dbVr5">
+                    <field name="FIELD">0</field>
+                    <value name="TIME_STRING">
+                      <block type="rtc_get_time" id="2K7I3EPeBgAPe:;:`8WV"></block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="delay_custom" id="1!xDp=YDPjms0cd{Z6WH">
+                    <value name="DELAY_TIME">
+                      <block type="math_number" id="TQ;bV$qfwU0=nIXJU;Y;">
+                        <field name="NUM">1000</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>
